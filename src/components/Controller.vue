@@ -92,11 +92,6 @@ export default {
   background: var(--zekrBgColor);
   border-radius: 0 0 20pt 20pt;
   box-shadow: 1px 2px 2px var(--shadowColor);
-
-  position: sticky;
-  top: 0;
-  left: 0;
-  z-index: 3;
 }
 
 button,

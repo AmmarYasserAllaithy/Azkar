@@ -139,6 +139,10 @@ article>*:not(.progress) {
   pointer-events: none;
 }
 
+.zekr {
+  font-weight: bold;
+}
+
 .ref,
 .count,
 .desc {

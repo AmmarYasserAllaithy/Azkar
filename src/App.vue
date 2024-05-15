@@ -4,13 +4,15 @@
 
     <Controller @search="search" />
 
+    <div class="progress-wrapper" v-if="progress > 0">
+      <p class="progress" :style="{ width: progress + '%' }"></p>
+    </div>
+
     <section class="azkar">
       <Zekr v-for="zekr in azkar" :key="zekr.id" :zekr="zekr" @read="read" />
     </section>
 
     <Footer />
-
-    <p class="progress" :style="{ width: progress + '%' }"></p>
 
     <Alert v-if="progress == 100" :isSabah="isSabah" class="alert" />
   </section>
@@ -99,19 +101,34 @@ export default {
 .container {
   text-align: center;
   padding: 0 1rem;
-  position: relative;
+}
+
+.progress-wrapper {
+  margin: 1rem .3rem;
+  height: 1.4rem;
+  border-radius: var(--headerRadius);
+  color: var(--textColor);
+  background: var(--zekrBgColor);
+  box-shadow: 1px 1px 10px var(--shadowColor);
+
   overflow: hidden;
+  position: sticky;
+  top: 0;
+  z-index: 999;
 }
 
 .progress {
   position: absolute;
-  right: 0;
-  top: 0;
-  height: 100%;
+  border-radius: inherit;
+  top: .2rem;
+  right: .2rem;
+  bottom: .2rem;
+
+
   transition: 1s linear;
   background: var(--progressColor);
-  opacity: 0.15;
-  z-index: -1;
+  opacity: .25;
+  height: 1rem;
 }
 
 .alert {
@@ -125,12 +142,15 @@ export default {
   background: var(--shadowColor);
 }
 
+.azkar {
+  margin: 1rem auto;
+}
+
 @media screen and (min-width: 768px) {
   .azkar {
     display: flex;
     flex-wrap: wrap;
     flex-direction: row-reverse;
-    margin: 1rem auto;
   }
 
   .azkar>* {
