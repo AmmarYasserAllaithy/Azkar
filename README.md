@@ -15,7 +15,7 @@ It has some features that faciliting the use and encouraging the user on complet
 
 ## Hosting
 
-Become live on [azaar.netlify.app](https://azkaar.netlify.app)
+Become live on https://azkaar.netlify.app
 
 ## Preview
 
