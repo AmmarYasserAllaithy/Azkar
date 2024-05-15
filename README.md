@@ -15,12 +15,12 @@ It has some features that faciliting the use and encouraging the user on complet
 
 ## Hosting
 
-Become live on [azaar.netlify.app](https://azaar.netlify.app)
+Become live on [azaar.netlify.app](https://azkaar.netlify.app)
 
 ## Preview
 
-| Light theme                              | Dark theme                                         |
-| ---------------------------------------- | -------------------------------------------------- |
-| ![Screenshot](screenshot/Screenshot.jpg) | ![Screenshot-dark](screenshot/Screenshot-dark.jpg) |
+| Light theme                               | Dark theme                                          |
+| ----------------------------------------- | --------------------------------------------------- |
+| ![Screenshot](screenshots/Screenshot.jpg) | ![Screenshot-dark](screenshots/Screenshot-dark.jpg) |
 
 Developped with &hearts; using Spck NodeJS android app.
