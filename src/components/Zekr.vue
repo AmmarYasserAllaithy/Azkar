@@ -118,9 +118,9 @@ export default {
 
 <style type="text/css" media="all" scoped>
 article {
-  margin: 1rem auto;
+  margin: .25rem;
   padding: 1rem;
-  border-radius: 12pt;
+  border-radius: 9pt;
   color: var(--textColor);
   background: var(--zekrBgColor);
   box-shadow: 1px 1px 10px var(--shadowColor);
@@ -130,23 +130,19 @@ article {
 
   display: flex;
   flex-direction: column;
-  gap: .5rem;
+  justify-content: center;
+  gap: .75rem;
+
 }
 
 article>*:not(.progress) {
   pointer-events: none;
 }
 
-.zekr {
-  font-weight: 550;
-}
-
-.ref {
-  opacity: .5;
-}
-
+.ref,
+.count,
 .desc {
-  opacity: .8;
+  opacity: .6;
 }
 
 .progress {

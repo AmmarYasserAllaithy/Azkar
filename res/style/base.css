@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Baloo+Bhaijaan+2:wght@400..800&display=swap');
 
 * {
   margin: 0;
@@ -9,7 +9,7 @@
   unicode-bidi: plaintext;
   list-style: none;
 
-  font-family: Rubik, sans-serif;
+  font-family: "Baloo Bhaijaan 2", sans-serif;
 
   --white: #fff;
   --black: #111;
@@ -40,11 +40,14 @@
 }
 
 body {
-  color: var(--textColor);
+  max-width: 1200px;
+  margin: auto;
+
+  /* color: var(--textColor); */
   background: var(--bodyBgColor);
   background-image: var(--bgUrl);
 
-  font-size: 12pt;
+  /* font-size: 12pt; */
 }
 
 /*

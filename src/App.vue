@@ -130,14 +130,12 @@ export default {
     display: flex;
     flex-wrap: wrap;
     flex-direction: row-reverse;
-    gap: 1rem;
     margin: 1rem auto;
   }
 
   .azkar>* {
     flex-basis: 350px;
     flex-grow: 1;
-    margin: 0.1rem;
   }
 }
 </style>
