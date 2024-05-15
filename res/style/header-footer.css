@@ -1,0 +1,22 @@
+@import 'base.css';
+
+
+header,
+footer {
+  background: var(--headerBgColor);
+  color: var(--white);
+  border-radius: var(--headerRadius);
+  padding: 1rem;
+  box-shadow: 1px 1px 10px var(--shadowColor);
+  background-image: var(--bgUrl);
+}
+
+header {
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+
+footer {
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}

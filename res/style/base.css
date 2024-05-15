@@ -1,0 +1,65 @@
+@import url('https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  outline: none;
+  border: none;
+  box-sizing: border-box;
+  unicode-bidi: plaintext;
+  list-style: none;
+
+  font-family: Rubik, sans-serif;
+
+  --white: #fff;
+  --black: #111;
+
+  --headerBgColor: #368;
+  --bodyBgColor: #3683;
+  --zekrBgColor: var(--white);
+
+  --textColor: var(--headerBgColor);
+  --shadowColor: #3682;
+  --progressColor: #00BFA5;
+  /*#49D0C3;*/
+
+  --headerRadius: 30pt;
+  --bgUrl: url(/res/images/bg-pattern.png);
+}
+
+.dark,
+.dark * {
+  --white: #e5e7e9;
+
+  --headerBgColor: #222;
+  --bodyBgColor: var(--black);
+  --zekrBgColor: #333;
+
+  --shadowColor: #0005;
+  --textColor: var(--white);
+}
+
+body {
+  color: var(--textColor);
+  background: var(--bodyBgColor);
+  background-image: var(--bgUrl);
+
+  font-size: 12pt;
+}
+
+/*
+$BURGUNDY: #A62C49;
+$BISTRE: #30272B;
+$POWDERBLUE: #7EA7B9;
+
+$mainColor: $BURGUNDY;
+$altColor: $POWDERBLUE;
+$bgColor: rgba(255, 255, 255, .8);
+$fontColor: $BISTRE;
+*/
+
+.flex-sb {
+  display: flex;
+  justify-items: center;
+  justify-content: space-around;
+}
