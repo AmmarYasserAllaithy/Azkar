@@ -117,7 +117,6 @@ article {
   background: var(--zekrBgColor);
   box-shadow: 1px 1px 10px var(--shadowColor);
 
-  cursor: pointer;
   overflow: hidden;
   position: relative;
 
