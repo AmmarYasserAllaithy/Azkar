@@ -1,6 +1,6 @@
 <template>
   <section class="container">
-    <Header :isSabah="isSabah" />
+    <Header :isSabah="isMorning" />
 
     <Controller @search="search" />
 
@@ -9,14 +9,15 @@
     </div>
 
     <section class="azkar">
-      <Zekr v-for="zekr in azkar" :key="zekr.id" :zekr="zekr" @read="read" />
+      <Zekr v-for="zekr in azkar" :key="zekr.id" :zekr="zekr" @read="read" :isMorning="isMorning" />
     </section>
 
     <Footer />
 
-    <Alert v-if="progress == 100" :isSabah="isSabah" class="alert" />
+    <Alert v-if="progress == 100" :isSabah="isMorning" class="alert" />
   </section>
 </template>
+
 
 <script lang="ts">
 import Header from "./components/Header";
@@ -26,7 +27,7 @@ import Footer from "./components/Footer";
 
 import Alert from "./views/Alert";
 
-import azkarData from "/res/azkar.json";
+import azkarDb from "/res/azkar.db.json";
 
 export default {
   name: "App",
@@ -57,25 +58,23 @@ export default {
     },
 
     search(regex) {
-      this.azkar =
-        regex == ""
-          ? this.data
-          : this.data.filter(
-            ({ zekr, reference, description, count }) =>
-              zekr.satisfy(regex) ||
-              count.toString().satisfy(regex) ||
-              (reference && reference.satisfy(regex)) ||
-              (description && description.satisfy(regex))
-          );
+      this.azkar = regex == "" ?
+        this.data :
+        this.data.filter(({ body, count, virtue, reference }) =>
+          body.satisfy(regex) ||
+          count.toString().satisfy(regex) ||
+          (virtue && virtue.satisfy(regex)) ||
+          (reference && reference.satisfy(regex))
+        )
 
       this.updateProgress;
     },
   },
 
   computed: {
-    isSabah() {
+    isMorning() {
       let h = new Date().getHours();
-      return h >= 5 && h <= 15;
+      return h >= 4 && h <= 16
     },
   },
 
@@ -86,9 +85,9 @@ export default {
   },
 
   created() {
-    this.data = azkarData.azkar
-      .filter((zekr) => zekr.sabah == this.isSabah)
-      .sort((z1, z2) => z1.viewOrder - z2.viewOrder);
+    this.data = azkarDb
+      .filter((zekr) => this.isMorning ? zekr.viewOrderInMorning : zekr.viewOrderInEvening)
+      .sort((z1, z2) => this.isMorning ? z1.viewOrderInMorning - z2.viewOrderInMorning : z1.viewOrderInEvening - z2.viewOrderInEvening)
     this.azkar = this.data;
   },
 };

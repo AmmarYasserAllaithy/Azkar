@@ -1,7 +1,7 @@
 <template>
   <article @click="e => !read && updateCount()">
 
-    <p class="zekr" v-html="zekr.zekr.replace('\n', '<br>')"></p>
+    <p class="zekr" v-html="zekr.body.replace('\n', '<br>')"></p>
 
     <div class="flex-sb" dir="rtl">
       <p class="ref" v-if="zekr.reference">
@@ -13,8 +13,8 @@
       </p>
     </div>
 
-    <p class="desc" v-if="zekr.description">
-      {{ zekr.description }}
+    <p class="virtue" v-if="zekr.virtue">
+      {{ zekr.virtue }}
     </p>
 
     <p class="progress" :style="progressStyle"></p>
@@ -29,11 +29,11 @@ export default {
 
   props: {
     zekr: Object,
+    isMorning: Boolean
   },
 
   data() {
     return {
-      isSabah: this.zekr.sabah,
       count: this.zekr.count,
       read: false,
       progress: 0,
@@ -52,41 +52,33 @@ export default {
       this.read = this.count == 0
 
       if (this.read) {
-        setTimeout(
-          () => this.count = '',
-          500)
-
+        setTimeout(() => this.count = '', 500)
         this.$emit('read', this.zekr.id)
       }
     },
 
     updateCookie() {
-      document.cookie = `${this.key}=${this.count}; expires=${this.exDate}`
+      document.cookie = `${this.key}=${this.count};expires=${this.exDate}`
     },
 
     readCookie() {
       return document.cookie
-        .split('; ')
-        .find(row => row.startsWith(this.key))
+        .split(/\s?;\s?/g)
+        .find(item => item.startsWith(this.key))
         ?.split('=')[1]
     },
   },
 
   computed: {
     key() {
-      return `Z_${this.zekr.id}`
+      return `Z${this.isMorning ? 'M' : 'E'}_${this.zekr.id}`
     },
 
     exDate() {
       let date = new Date()
-      let h = this.isSabah ? 5 : 16
 
-      if (date.getHours() >= h)
-        date.setDate(date.getDate() + 1)
-
-      date.setHours(h)
-      date.setMinutes(0)
-      date.setSeconds(0)
+      date.setHours(date.getHours() + 11)
+      date.setMinutes(date.getMinutes() + 30)
 
       return date.toUTCString()
     },
@@ -125,6 +117,7 @@ article {
   background: var(--zekrBgColor);
   box-shadow: 1px 1px 10px var(--shadowColor);
 
+  cursor: pointer;
   overflow: hidden;
   position: relative;
 
@@ -145,7 +138,7 @@ article>*:not(.progress) {
 
 .ref,
 .count,
-.desc {
+.virtue {
   opacity: .6;
 }
 
