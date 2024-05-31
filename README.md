@@ -19,8 +19,12 @@ Become live on https://azkaar.netlify.app
 
 ## Preview
 
-| Light theme                               | Dark theme                                          |
-| ----------------------------------------- | --------------------------------------------------- |
-| ![Screenshot](screenshots/Screenshot.jpg) | ![Screenshot-dark](screenshots/Screenshot-dark.jpg) |
+Light theme
+
+![Screenshot](screenshots/light.png)
+
+Dark theme
+
+![Screenshot-dark](screenshots/dark.png)
 
 Developped with &hearts; using Spck NodeJS android app.
