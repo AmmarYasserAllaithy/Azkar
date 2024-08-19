@@ -1,5 +1,5 @@
 <template>
-  <article @click="e => !read && updateCount()">
+  <article @click="e => !read && updateCount()" ref="articleRef">
 
     <p class="zekr" v-html="zekr.body.replace('\n', '<br>')"></p>
 
@@ -36,6 +36,8 @@ export default {
     return {
       count: this.zekr.count,
       read: false,
+      hypotenuse: '100%',
+      deg: 0,
       progress: 0,
       progressMargin: '.25rem'
     }
@@ -67,6 +69,10 @@ export default {
         .find(item => item.startsWith(this.key))
         ?.split('=')[1]
     },
+
+    calcHypotenuse(width, height) {
+      return parseInt(Math.sqrt(Math.pow(parseInt(width), 2) + Math.pow(parseInt(height), 2)))
+    },
   },
 
   computed: {
@@ -86,21 +92,28 @@ export default {
     progressStyle() {
       return {
         margin: this.progressMargin,
-        width: `calc(100% - ${this.progressMargin} * 2)`,
-        height: `calc(${this.progress}% - ${this.progressMargin} * 2)`
+        width: this.hypotenuse + 'px',
+        height: this.progress + 'px',
+        transform: `rotate(-${90 - this.deg}deg) translateX(50%)`
       }
     }
   },
 
   watch: {
     count(value) {
-      this.progress = 100 - value / this.zekr.count * 100
+      this.progress = (this.zekr.count - value) / this.zekr.count * this.hypotenuse
     },
   },
 
   created() {
     this.count = this.readCookie() || this.count
     this.updateUI()
+  },
+
+  mounted() {
+    const computedStyle = getComputedStyle(this.$refs.articleRef)
+    this.hypotenuse = this.calcHypotenuse(computedStyle.width, computedStyle.height)
+    this.deg = Math.acos(parseInt(computedStyle.width) / this.hypotenuse) * 180 / Math.PI
   },
 
   emits: ['read'],
@@ -110,7 +123,7 @@ export default {
 
 <style type="text/css" media="all" scoped>
 article {
-  margin: .25rem;
+  margin: .5rem;
   padding: 1rem;
   border-radius: 9pt;
   color: var(--textColor);
@@ -141,14 +154,25 @@ article>*:not(.progress) {
   opacity: .6;
 }
 
-.progress {
+.progress,
+article::after {
   position: absolute;
   border-radius: inherit;
   bottom: 0;
   right: 0;
+}
 
+.progress {
   transition: 1s linear;
   background: var(--progressColor);
   opacity: .15;
+  transform-origin: 100% 100%;
+}
+
+article::after {
+  content: '';
+  top: 0;
+  left: 0;
+  border: .25rem solid white;
 }
 </style>
