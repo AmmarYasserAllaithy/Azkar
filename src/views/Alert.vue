@@ -1,6 +1,6 @@
 <template>
   <section class="container" :class="{ hide: hide }">
-    <section class="alert">
+    <section class="dialog">
 
       <h2>
         <i class="fa fa-3x fa-check-circle"></i>
@@ -75,13 +75,13 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 99;
 }
 
-.alert {
+.dialog {
   width: 100%;
+  max-width: 400px;
   margin: 1rem;
-  padding: 1rem;
+  padding: 1.5rem;
   background: var(--zekrBgColor);
   border-radius: var(--headerRadius);
   box-shadow: 1pt 1pt 10pt var(--bodyBgColor);
@@ -90,7 +90,7 @@ export default {
   position: relative;
 }
 
-.alert>* {
+.dialog>* {
   margin: 1rem;
 }
 
