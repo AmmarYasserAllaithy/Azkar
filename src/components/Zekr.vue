@@ -173,6 +173,6 @@ article::after {
   content: '';
   top: 0;
   left: 0;
-  border: .25rem solid white;
+  border: .25rem solid var(--zekrBgColor);
 }
 </style>
