@@ -8,7 +8,7 @@
         {{ zekr.reference }}
       </p>
 
-      <p class="count" v-if="progress < 100">
+      <p class="count" v-if="count">
         {{ count }}
       </p>
     </div>
