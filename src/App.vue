@@ -74,7 +74,7 @@ export default {
   computed: {
     isMorning() {
       let h = new Date().getHours();
-      return h >= 4 && h <= 16
+      return h >= 4 && h < 15
     },
   },
 
