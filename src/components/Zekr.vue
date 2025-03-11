@@ -1,5 +1,5 @@
 <template>
-  <article @click="e => !read && updateCount()" ref="articleRef">
+  <article @click="e => !read && updateCount()" :class="{ dimmed: read }" ref="articleRef">
 
     <p class="zekr" v-html="zekr.body.replace('\n', '<br>')"></p>
 
@@ -137,7 +137,10 @@ article {
   flex-direction: column;
   justify-content: center;
   gap: .75rem;
+}
 
+article.dimmed {
+  opacity: .5;
 }
 
 article>*:not(.progress) {
