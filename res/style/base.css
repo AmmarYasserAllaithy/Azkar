@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@400..700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Zain:wght@400..700&display=swap');
 
 * {
   margin: 0;
@@ -9,7 +9,7 @@
   unicode-bidi: plaintext;
   list-style: none;
 
-  font-family: Rubik, sans-serif;
+  font-family: Zain, sans-serif;
 
   --white: #fff;
   --black: #111;
