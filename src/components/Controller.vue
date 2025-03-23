@@ -29,6 +29,7 @@ export default {
   data() {
     return {
       DARK: 'dark',
+      PREFER_DARK: 'prefer_dark',
       fontSize: 12,
       showInfo: false,
     }
@@ -71,10 +72,26 @@ export default {
     },
 
     toggleTheme() {
-      if (document.body.classList.contains(this.DARK))
-        document.body.classList.remove(this.DARK)
-      else document.body.classList.add(this.DARK)
+      let newThemeCode = parseInt(localStorage.getItem(this.PREFER_DARK)) == 1 ? 0 : 1
+
+      if (newThemeCode == 1) this.applyDarkTheme()
+      else this.applyLightTheme()
+
+      localStorage.setItem(this.PREFER_DARK, newThemeCode)
     },
+
+    applyLightTheme() {
+      document.body.classList.remove(this.DARK)
+    },
+
+    applyDarkTheme() {
+      document.body.classList.add(this.DARK)
+    },
+  },
+
+  mounted() {
+    if (parseInt(localStorage.getItem(this.PREFER_DARK)))
+      this.applyDarkTheme()
   },
 }
 </script>
@@ -92,6 +109,10 @@ export default {
   background: var(--zekrBgColor);
   border-radius: 0 0 20pt 20pt;
   box-shadow: 1px 2px 2px var(--shadowColor);
+}
+
+button {
+  cursor: pointer;
 }
 
 button,
