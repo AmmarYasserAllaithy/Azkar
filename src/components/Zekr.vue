@@ -144,6 +144,7 @@ article>*:not(.progress) {
 article::after {
   position: absolute;
   border-radius: inherit;
+  top: 0;
   bottom: 0;
   right: 0;
 }
@@ -152,7 +153,6 @@ article::after {
   transition: 1s linear;
   background: var(--progressColor);
   opacity: .15;
-  height: 100%;
 }
 
 article::after {
