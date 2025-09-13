@@ -36,7 +36,6 @@ export default {
     return {
       count: this.zekr.count,
       read: false,
-      hypotenuse: '100%',
       deg: 0,
       progress: 0,
       progressMargin: '.25rem'
@@ -69,10 +68,6 @@ export default {
         .find(item => item.startsWith(this.key))
         ?.split('=')[1]
     },
-
-    calcHypotenuse(width, height) {
-      return parseInt(Math.sqrt(Math.pow(parseInt(width), 2) + Math.pow(parseInt(height), 2)))
-    },
   },
 
   computed: {
@@ -92,28 +87,20 @@ export default {
     progressStyle() {
       return {
         margin: this.progressMargin,
-        width: this.hypotenuse + 'px',
-        height: this.progress + 'px',
-        transform: `rotate(-${90 - this.deg}deg) translateX(50%)`
+        width: this.progress + '%',
       }
     }
   },
 
   watch: {
     count(value) {
-      this.progress = (this.zekr.count - value) / this.zekr.count * this.hypotenuse
+      this.progress = (this.zekr.count - value) / this.zekr.count * 100
     },
   },
 
   created() {
     this.count = this.readCookie() || this.count
     this.updateUI()
-  },
-
-  mounted() {
-    const computedStyle = getComputedStyle(this.$refs.articleRef)
-    this.hypotenuse = this.calcHypotenuse(computedStyle.width, computedStyle.height)
-    this.deg = Math.acos(parseInt(computedStyle.width) / this.hypotenuse) * 180 / Math.PI
   },
 
   emits: ['read'],
@@ -165,7 +152,7 @@ article::after {
   transition: 1s linear;
   background: var(--progressColor);
   opacity: .15;
-  transform-origin: 100% 100%;
+  height: 100%;
 }
 
 article::after {
